@@ -1,6 +1,7 @@
 import "./App.css"
-import EmployeeTable from "./components/EmployeeTable.jsx"
 import { taxRate } from "./library/financial.jsx"
+import EmployeeTable from "./components/EmployeeTable.jsx"
+import EventCounter from "./components/EventCounter.jsx"
 
 function App() {
   let data = [
@@ -33,8 +34,11 @@ function App() {
 
   return (
     <>
-			<h1>Employee Information Systems</h1>
-      <EmployeeTable employees={data} taxFunction={taxRate}/>
+		  <div className="react-component">
+        <h2>Employee Information Systems</h2>
+        <EmployeeTable employees={data} taxFunction={taxRate}/>
+      </div>
+      <EventCounter />
     </>
   )
 }
