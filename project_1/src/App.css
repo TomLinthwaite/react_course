@@ -40,3 +40,25 @@
 .read-the-docs {
   color: #888;
 }
+
+.employee_info {
+  margin: 1rem 0;
+  padding: 1rem;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  text-align: left;
+  max-width: 400px;
+  background-color: #f7f7f7;
+  color: #333;
+}
+
+.employee_info_field {
+  display: flex;
+  text-align: left;
+  margin: 0.5rem 0;
+}
+
+.employee_info_field > div:first-child {
+  min-width: 120px;
+  font-weight: 800;
+}
