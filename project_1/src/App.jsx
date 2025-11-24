@@ -1,11 +1,40 @@
-import Info from "./components/Info.jsx"
+import "./App.css"
+import EmployeeTable from "./components/EmployeeTable.jsx"
+import { taxRate } from "./library/financial.jsx"
 
 function App() {
+  let data = [
+    {
+      name: "Alex",
+      salary: 32000,
+      department: "Engineering"
+    },
+    {
+      name: "Sam",
+      salary: 25000,
+      department: "Marketing" 
+    },
+    {
+      name: "Jordan",
+      salary: 18500,
+      department: "Sales"
+    },
+    {
+      name: "Taylor",
+      salary: 22000,
+      department: "HR"
+    },
+    {
+      name: "Morgan",
+      salary: 17000,
+      department: "Support"
+    }
+  ]
+
   return (
     <>
 			<h1>Employee Information Systems</h1>
-      <Info ename="Some person" salary="12000"/>
-      <Info ename="Other person" salary="45000"/>
+      <EmployeeTable employees={data} taxFunction={taxRate}/>
     </>
   )
 }
