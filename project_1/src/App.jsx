@@ -6,6 +6,7 @@ import EventArray from "./components/EventArray.jsx"
 import EventInput from "./components/EventInput.jsx"
 import TodoList from "./components/TodoList.jsx"
 import Promise from "./components/Promise.jsx"
+import EmployeeAPI from "./components/EmployeeAPI.jsx"
 
 function App() {
   let data = [
@@ -38,6 +39,7 @@ function App() {
 
   return (
     <>
+      <EmployeeAPI />
       <Promise />
       <TodoList />
       <EventInput />

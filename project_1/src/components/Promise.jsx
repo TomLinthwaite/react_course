@@ -2,7 +2,12 @@ import { useState } from "react"
 
 function Promise() {
 
-	let api_url = "https://jsonplaceholder.typicode.com/todos/"
+	let api_urls = {
+		"jsonplaceholder_todos": "https://jsonplaceholder.typicode.com/todos/",
+		"local_department": "http://localhost:3000/department",
+		"local_employees": "http://localhost:3000/employees"
+	}
+	let api_url = api_urls["local_department"]
 	let [api_data, setApiData] = useState([])
 
 	function process_response(response) {
@@ -41,7 +46,8 @@ function Promise() {
 		// let display_data = data.slice(0, 5) // First 5 rows
 		let display_data = [] // Get 5 random items to display
 		let used_indices = new Set()
-		while (display_data.length < 5) {
+		let max_items = Math.min(5, data.length)
+		while (display_data.length < max_items) {
 			let rand_index = Math.floor(Math.random() * data.length)
 			if (!used_indices.has(rand_index)) {
 				used_indices.add(rand_index)

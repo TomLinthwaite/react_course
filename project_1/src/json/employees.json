@@ -1,0 +1,47 @@
+{
+"department": [
+	{
+	"id": 1,
+	"deptname": "Human Resource",
+	"location": "London"
+	},
+	{
+	"deptname": "Sports DEpartment",
+	"location": "Manchester",
+	"id": 6
+	},
+	{
+	"deptname": "Purchase DEpartment",
+	"location": "London",
+	"id": 7
+	},
+	{
+	"deptname": "Backup Department",
+	"location": "Manchester",
+	"id": 8
+	}
+],
+"employees": [
+	{
+	"id": 1,
+	"deptid": 1,
+	"empno": 2001,
+	"name": "Shafeeq",
+	"salary": 2000
+	},
+	{
+	"id": 2,
+	"deptid": 1,
+	"empno": 2002,
+	"name": "Kames",
+	"salary": 300
+	},
+	{
+	"empno": 5001,
+	"deptid": 2,
+	"name": "Maria",
+	"salary": 15000,
+	"id": 3
+	}
+]
+}
