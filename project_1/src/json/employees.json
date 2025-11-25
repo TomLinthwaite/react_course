@@ -1,47 +1,183 @@
 {
-"department": [
-	{
-	"id": 1,
-	"deptname": "Human Resource",
-	"location": "London"
-	},
-	{
-	"deptname": "Sports DEpartment",
-	"location": "Manchester",
-	"id": 6
-	},
-	{
-	"deptname": "Purchase DEpartment",
-	"location": "London",
-	"id": 7
-	},
-	{
-	"deptname": "Backup Department",
-	"location": "Manchester",
-	"id": 8
-	}
-],
-"employees": [
-	{
-	"id": 1,
-	"deptid": 1,
-	"empno": 2001,
-	"name": "Shafeeq",
-	"salary": 2000
-	},
-	{
-	"id": 2,
-	"deptid": 1,
-	"empno": 2002,
-	"name": "Kames",
-	"salary": 300
-	},
-	{
-	"empno": 5001,
-	"deptid": 2,
-	"name": "Maria",
-	"salary": 15000,
-	"id": 3
-	}
-]
+  "department": [
+    {
+      "id": 1,
+      "deptname": "Engineering",
+      "location": "London"
+    },
+    {
+      "id": 2,
+      "deptname": "Marketing",
+      "location": "Manchester"
+    },
+    {
+      "id": 3,
+      "deptname": "Sales",
+      "location": "Birmingham"
+    },
+    {
+      "id": 4,
+      "deptname": "Human Resources",
+      "location": "London"
+    },
+    {
+      "id": 5,
+      "deptname": "Finance",
+      "location": "Edinburgh"
+    },
+    {
+      "id": 6,
+      "deptname": "Customer Support",
+      "location": "Bristol"
+    },
+    {
+      "id": "0a37",
+      "deptname": "New Dept 518",
+      "location": "Location 72"
+    },
+    {
+      "id": "55e4",
+      "deptname": "New Dept 1",
+      "location": "Location 92"
+    },
+    {
+      "id": "82a4",
+      "deptname": "New Dept 469",
+      "location": "Location 19"
+    },
+    {
+      "id": "60cf",
+      "deptname": "New Dept 251",
+      "location": "Location 16"
+    },
+    {
+      "id": "28d9",
+      "deptname": "New Dept 764",
+      "location": "Location 26"
+    },
+    {
+      "id": "b611",
+      "deptname": "New Dept ",
+      "location": "Location "
+    },
+    {
+      "id": "75c8",
+      "deptname": "New Dept ",
+      "location": "Location "
+    }
+  ],
+  "employees": [
+    {
+      "id": 1,
+      "deptid": 1,
+      "empno": 1001,
+      "name": "Sarah Johnson",
+      "salary": 65000
+    },
+    {
+      "id": 2,
+      "deptid": 1,
+      "empno": 1002,
+      "name": "Michael Chen",
+      "salary": 72000
+    },
+    {
+      "id": 3,
+      "deptid": 1,
+      "empno": 1003,
+      "name": "Emma Williams",
+      "salary": 58000
+    },
+    {
+      "id": 4,
+      "deptid": 2,
+      "empno": 2001,
+      "name": "David Martinez",
+      "salary": 48000
+    },
+    {
+      "id": 5,
+      "deptid": 2,
+      "empno": 2002,
+      "name": "Sophie Anderson",
+      "salary": 52000
+    },
+    {
+      "id": 6,
+      "deptid": 3,
+      "empno": 3001,
+      "name": "James Thompson",
+      "salary": 45000
+    },
+    {
+      "id": 7,
+      "deptid": 3,
+      "empno": 3002,
+      "name": "Olivia Brown",
+      "salary": 47000
+    },
+    {
+      "id": 8,
+      "deptid": 3,
+      "empno": 3003,
+      "name": "Daniel Garcia",
+      "salary": 43000
+    },
+    {
+      "id": 9,
+      "deptid": 4,
+      "empno": 4001,
+      "name": "Emily Davis",
+      "salary": 54000
+    },
+    {
+      "id": 10,
+      "deptid": 4,
+      "empno": 4002,
+      "name": "Ryan Wilson",
+      "salary": 51000
+    },
+    {
+      "id": 11,
+      "deptid": 5,
+      "empno": 5001,
+      "name": "Jessica Taylor",
+      "salary": 68000
+    },
+    {
+      "id": 12,
+      "deptid": 5,
+      "empno": 5002,
+      "name": "Christopher Lee",
+      "salary": 71000
+    },
+    {
+      "id": 13,
+      "deptid": 5,
+      "empno": 5003,
+      "name": "Amanda White",
+      "salary": 66000
+    },
+    {
+      "id": 14,
+      "deptid": 6,
+      "empno": 6001,
+      "name": "Matthew Harris",
+      "salary": 38000
+    },
+    {
+      "id": 15,
+      "deptid": 6,
+      "empno": 6002,
+      "name": "Lauren Clark",
+      "salary": 41000
+    },
+    {
+      "id": 16,
+      "deptid": 6,
+      "empno": 6003,
+      "name": "Joshua Lewis",
+      "salary": 39000
+    }
+  ]
 }

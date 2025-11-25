@@ -7,23 +7,40 @@ function EmployeeAPI() {
 	}
 	let [employee_data, setEmployeeData] = useState([])
 	let [department_data, setDepartmentData] = useState([])
+	let [department_name, setDepartmentName] = useState("")
 
-	function fetchEmployeeData(department_id) {
-		let obj = fetch(api_urls["employees"])
-		obj.then((response) => {
-			let data_promise = response.json()
-			data_promise.then((data) => (
-				data = data.filter((emp) => emp.deptid == department_id),
-				setEmployeeData(data)
-			))
-		})
-	}
+    function fetchEmployeeData(department_id, department_name) {
+        fetch(api_urls["employees"]).then((response) => {
+            response.json().then((data) => {
+                data = data.filter((emp) => emp.deptid == department_id)
+                setEmployeeData(data)
+                setDepartmentName(department_name)
+            })
+        })
+    }
 
 	function fetchDepartmentData() {
 		let obj = fetch(api_urls["departments"])
 		obj.then((response) => {
-			let data_promise = response.json()
-			data_promise.then((data) => setDepartmentData(data))
+			response.json().then((data) => setDepartmentData(data))
+		})
+	}
+
+	function addDepartmentData() {
+		let new_department = {
+			"deptname": "New Dept ",
+			"location": "Location "
+		}
+
+		fetch(api_urls["departments"], {
+			method: "POST",
+			headers: {"Content-Type": "application/json"},
+			body: JSON.stringify(new_department)
+		})
+		.then((response) => {
+			if (response.ok) {
+				fetchDepartmentData() // Refresh department list
+			}
 		})
 	}
 
@@ -50,7 +67,7 @@ function EmployeeAPI() {
 								<td>{dept.deptname}</td>
 								<td>{dept.location}</td>
 								<td>
-									<input type="button" value="Fetch employees" onClick={() => fetchEmployeeData(dept.id)} />
+									<input type="button" value="Fetch employees" onClick={() => fetchEmployeeData(dept.id, dept.deptname)} />
 								</td>
 							</tr>
 						))
@@ -62,17 +79,24 @@ function EmployeeAPI() {
 
 	function generateEmployeeTable(data) {
 		if (data.length == 0) {
-			return <p>No employess selected.</p>
+			return (
+				<>
+					<h3>Employees</h3>
+					<p>No employess selected.</p>
+				</>
+			)
 		}
 
 		return (
+			<>
+			<h3>Employees in {department_name}</h3>
 			<table>
 				<thead>
 					<tr>
-						<th>ID</th>
+						{/* <th>ID</th> */}
 						<th>Employee No.</th>
 						<th>Name</th>
-						<th>Department</th>
+						{/* <th>Department</th> */}
 						<th>Salary</th>
 					</tr>
 				</thead>
@@ -80,28 +104,31 @@ function EmployeeAPI() {
 					{
 						data.map((emp, index) => (
 							<tr key={index}>
-								<td>{emp.id}</td>
+								{/* <td>{emp.id}</td> */}
 								<td>{emp.empno}</td>
 								<td>{emp.name}</td>
-								<td>{emp.deptid}</td>
-								<td>{emp.salary}</td>
+								{/* <td>{emp.deptid}</td> */}
+								<td>£ {parseInt(emp.salary).toLocaleString()}</td>
 							</tr>
 						))
 					}
 				</tbody>
 			</table>
+			</>
 		)
 	}
 
 	return (
 		<div className="react-component">
 			<h2>Employee API Component</h2>
-			<input type="button" value="Fetch departments" onClick={fetchDepartmentData} />
+			<div className="h-group">
+				<input type="button" value="Fetch departments" onClick={fetchDepartmentData} />
+				<input type="button" value="Add department" onClick={addDepartmentData} className="button-option" />
+			</div>
 			<br />
 			<h3>Departments</h3>
 			{generateDepartmentTable(department_data)}
 			<br />
-			<h3>Employees in selected department</h3>
 			{generateEmployeeTable(employee_data)}
 		</div>
 	)

@@ -89,6 +89,14 @@ input[type="button"].button-clear:hover {
   background-color: #fb8c00;
 }
 
+input[type="button"].button-option {
+  background-color: rgb(136, 136, 227) ;
+}
+
+input[type="button"].button-option:hover {
+  background-color: rgb(104, 104, 199) ;
+}
+
 input[type="button"].button-remove {
   background-color: #f44336;
 }
