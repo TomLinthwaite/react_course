@@ -5,6 +5,7 @@ import EventCounter from "./components/EventCounter.jsx"
 import EventArray from "./components/EventArray.jsx"
 import EventInput from "./components/EventInput.jsx"
 import TodoList from "./components/TodoList.jsx"
+import Promise from "./components/Promise.jsx"
 
 function App() {
   let data = [
@@ -37,6 +38,7 @@ function App() {
 
   return (
     <>
+      <Promise />
       <TodoList />
       <EventInput />
       <EventArray />
