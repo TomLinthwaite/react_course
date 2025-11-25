@@ -16,7 +16,15 @@ h6 {
   margin: 0;
 }
 
+p {
+  margin-bottom: 0;
+}
+
 .react-component {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
   border: 1px solid #ccc;
   border-radius: 0.5rem;
   padding: 2rem;
@@ -28,7 +36,6 @@ h6 {
 table {
   width: 100%;
   border-collapse: collapse;
-  margin: 2rem 0;
   text-align: left;
 }
 
@@ -58,4 +65,55 @@ input[type="button"] {
 
 input[type="button"]:hover {
   background-color: #45a049;
+}
+
+input[type="text"] {
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 200px;
+}
+
+.h-group {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+input[type="button"].button-clear {
+  background-color: #ff9800;
+}
+
+input[type="button"].button-clear:hover {
+  background-color: #fb8c00;
+}
+
+input[type="button"].button-remove {
+  background-color: #f44336;
+}
+
+input[type="button"].button-remove:hover {
+  background-color: #d32f2f;
+}
+
+ul {
+  list-style-type: decimal;
+  padding: 0;
+}
+
+li {
+  background-color: #f9f9f9;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  border-radius: 4px;
+  text-align: left;
+  min-width: 600px;
+}
+
+li > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }

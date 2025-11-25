@@ -2,6 +2,9 @@ import "./App.css"
 import { taxRate } from "./library/financial.jsx"
 import EmployeeTable from "./components/EmployeeTable.jsx"
 import EventCounter from "./components/EventCounter.jsx"
+import EventArray from "./components/EventArray.jsx"
+import EventInput from "./components/EventInput.jsx"
+import TodoList from "./components/TodoList.jsx"
 
 function App() {
   let data = [
@@ -34,11 +37,14 @@ function App() {
 
   return (
     <>
-		  <div className="react-component">
-        <h2>Employee Information Systems</h2>
-        <EmployeeTable employees={data} taxFunction={taxRate}/>
-      </div>
+      <TodoList />
+      <EventInput />
+      <EventArray />
       <EventCounter />
+      <div className="react-component">
+        <h2>Employee Information Systems</h2>
+        <EmployeeTable employees={data} taxFunction={taxRate} />
+      </div>
     </>
   )
 }
