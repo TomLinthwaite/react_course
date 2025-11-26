@@ -7,6 +7,8 @@ import EventInput from "./components/EventInput.jsx"
 import TodoList from "./components/TodoList.jsx"
 import Promise from "./components/Promise.jsx"
 import EmployeeAPI from "./components/EmployeeAPI.jsx"
+import Parent from "./components/Parent.jsx"
+import Routing from "./components/Routing.jsx"
 
 function App() {
   let data = [
@@ -39,6 +41,8 @@ function App() {
 
   return (
     <>
+      <Routing />
+      <Parent />
       <EmployeeAPI />
       <Promise />
       <TodoList />

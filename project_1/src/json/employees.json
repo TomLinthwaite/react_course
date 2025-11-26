@@ -29,41 +29,6 @@
       "id": 6,
       "deptname": "Customer Support",
       "location": "Bristol"
-    },
-    {
-      "id": "0a37",
-      "deptname": "New Dept 518",
-      "location": "Location 72"
-    },
-    {
-      "id": "55e4",
-      "deptname": "New Dept 1",
-      "location": "Location 92"
-    },
-    {
-      "id": "82a4",
-      "deptname": "New Dept 469",
-      "location": "Location 19"
-    },
-    {
-      "id": "60cf",
-      "deptname": "New Dept 251",
-      "location": "Location 16"
-    },
-    {
-      "id": "28d9",
-      "deptname": "New Dept 764",
-      "location": "Location 26"
-    },
-    {
-      "id": "b611",
-      "deptname": "New Dept ",
-      "location": "Location "
-    },
-    {
-      "id": "75c8",
-      "deptname": "New Dept ",
-      "location": "Location "
     }
   ],
   "employees": [

@@ -1,4 +1,4 @@
-import { useState }	from "react"
+import { useState, useRef, useEffect }	from "react"
 
 function EmployeeAPI() {
 	let api_urls = {
@@ -8,6 +8,10 @@ function EmployeeAPI() {
 	let [employee_data, setEmployeeData] = useState([])
 	let [department_data, setDepartmentData] = useState([])
 	let [department_name, setDepartmentName] = useState("")
+	let new_department_name_ref = useRef()
+	let new_department_location_ref = useRef()
+
+	useEffect(fetchDepartmentData, [])
 
     function fetchEmployeeData(department_id, department_name) {
         fetch(api_urls["employees"]).then((response) => {
@@ -27,9 +31,26 @@ function EmployeeAPI() {
 	}
 
 	function addDepartmentData() {
+		if (department_data.length == 0) {
+			alert("Please fetch the department list first.")
+			return
+		}
+
+		if (!new_department_name_ref.current.value || !new_department_location_ref.current.value) {
+			alert("Please enter both department name and location.")
+			return
+		}
+
+		for (let dept of department_data) {
+			if (dept.deptname.toLowerCase() == new_department_name_ref.current.value.toLowerCase()) {
+				alert("Department name already exists.")
+				return
+			}
+		}
+
 		let new_department = {
-			"deptname": "New Dept ",
-			"location": "Location "
+			"deptname": new_department_name_ref.current.value,
+			"location": new_department_location_ref.current.value
 		}
 
 		fetch(api_urls["departments"], {
@@ -40,6 +61,27 @@ function EmployeeAPI() {
 		.then((response) => {
 			if (response.ok) {
 				fetchDepartmentData() // Refresh department list
+
+				// Clear input fields
+				new_department_name_ref.current.value = ""
+				new_department_location_ref.current.value = ""
+			}
+		})
+	}
+
+	function removeDepartment(department_id) {
+		fetch(api_urls["departments"] + `/${department_id}`, {
+			method: "DELETE"
+		})
+		.then((response) => {
+			if (response.ok) {
+				fetchDepartmentData()
+
+				// Clear employee data if it belongs to the removed department
+				if (employee_data.length > 0 && employee_data[0].deptid == department_id) {
+					setEmployeeData([])
+					setDepartmentName("")
+				}
 			}
 		})
 	}
@@ -62,12 +104,14 @@ function EmployeeAPI() {
 				<tbody>
 					{
 						data.map((dept, index) => (
-							<tr key={index}>
+							<tr key={index} className="selectable" onClick={() => fetchEmployeeData(dept.id, dept.deptname)}>
 								<td>{dept.id}</td>
 								<td>{dept.deptname}</td>
 								<td>{dept.location}</td>
 								<td>
-									<input type="button" value="Fetch employees" onClick={() => fetchEmployeeData(dept.id, dept.deptname)} />
+									<div className="h-group">
+										<input type="button" value="Remove" className="button-remove" onClick={() => removeDepartment(dept.id)}/>
+									</div>
 								</td>
 							</tr>
 						))
@@ -121,8 +165,10 @@ function EmployeeAPI() {
 	return (
 		<div className="react-component">
 			<h2>Employee API Component</h2>
+			{/* <input type="button" value="Fetch departments" onClick={fetchDepartmentData} /> */}
 			<div className="h-group">
-				<input type="button" value="Fetch departments" onClick={fetchDepartmentData} />
+				<input type="text" placeholder="Enter name..." ref={new_department_name_ref} />
+				<input type="text" placeholder="Enter location..." ref={new_department_location_ref} />
 				<input type="button" value="Add department" onClick={addDepartmentData} className="button-option" />
 			</div>
 			<br />
