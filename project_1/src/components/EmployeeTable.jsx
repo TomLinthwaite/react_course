@@ -4,23 +4,26 @@ export default function EmployeeTable(props) {
 	let employees = props.employees
 	let taxFunction = props.taxFunction
 	return (
-		<table>
-			<thead>
-				<tr>
-				<th>Name</th>
-				<th>Department</th>
-				<th>Salary</th>
-				<th>Tax</th>
-				<th>Tax %</th>
-				</tr>
-			</thead>
-			<tbody>
-			{
-				employees.map((emp, index) => (
-					<EmployeeTableRow key={index} data={emp} taxFunction={taxFunction}/>
-				))
-			}
-			</tbody>
-		</table>
+		<div className="react-component">
+			<h2>Employees</h2>
+			<table>
+				<thead>
+					<tr>
+					<th>Name</th>
+					<th>Department</th>
+					<th>Salary</th>
+					<th>Tax</th>
+					<th>Tax %</th>
+					</tr>
+				</thead>
+				<tbody>
+				{
+					employees.map((emp, index) => (
+						<EmployeeTableRow key={index} data={emp} taxFunction={taxFunction}/>
+					))
+				}
+				</tbody>
+			</table>
+		</div>
 	)
 }

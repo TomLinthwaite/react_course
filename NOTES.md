@@ -49,3 +49,94 @@ let [count, setCount] = useState(0)  // [value, setter function]
 - Convert strings to numbers: `Number(value)`
 - Use `className` instead of `class` in JSX
 - Import CSS: `import './App.css'`
+
+---
+
+#### Day 2 - Advanced React Concepts
+
+**Working with Arrays (Spread Operator):**
+```javascript
+let new_array = [...old_array]  // Creates a copy
+new_array.push(item)  // Modify the copy
+setState(new_array)  // Update state with new array
+```
+- Use spread operator `...` to create array copies
+- React requires new arrays/objects for state updates (not mutations)
+- `array.splice(index, 1)` removes an item at specific index
+
+**useRef Hook:**
+```javascript
+import { useRef } from "react"
+let input_ref = useRef(null)
+
+<input type="text" ref={input_ref} />
+input_ref.current.value  // Access the input value
+```
+- Creates a reference to DOM elements
+- Access with `.current` property
+- Useful for form inputs and direct DOM manipulation
+- Does not trigger re-renders when changed
+
+**Rendering Lists with Keys:**
+```javascript
+{items.map((item, index) => (
+  <Component key={index} data={item} />
+))}
+```
+- Each list item needs a unique `key` prop
+- Helps React track which items changed/added/removed
+- Use unique IDs when available, otherwise use index
+- Keys must be unique among siblings
+
+**Asynchronous Data Fetching (Promises):**
+```javascript
+fetch(url)
+  .then(response => response.json())
+  .then(data => setData(data))
+  .catch(error => console.error(error))
+```
+- `fetch()` returns a Promise for HTTP requests
+- `.then()` chains handle successful responses
+- `.catch()` handles errors
+- `response.json()` parses JSON response
+
+**useEffect Hook:**
+```javascript
+import { useEffect } from "react"
+
+useEffect(() => {
+  fetchData()
+}, [])  // Dependency array
+```
+- Runs side effects (data fetching, subscriptions, etc.)
+- Empty array `[]` = runs once on mount
+- `[variable]` = runs when variable changes
+- No array = runs on every render (avoid this)
+
+**API Integration Patterns:**
+- Use `useEffect` with empty dependency array to fetch data on mount
+- Filter data with `.filter()` method
+- POST requests: include method, headers, and body
+- DELETE requests: append ID to URL and use DELETE method
+- Refresh data after mutations by calling fetch functions
+
+**Parent-Child Communication:**
+```javascript
+// Parent passes function as prop
+<Child onSendMessage={handleMessage} />
+
+// Child calls the function
+function Child({ onSendMessage }) {
+  onSendMessage(data)  // Sends data to parent
+}
+```
+- Props flow down (parent → child)
+- Callbacks flow up (child → parent)
+- Parent passes functions to child via props
+- Child invokes those functions to send data back
+
+**CSS Specificity:**
+- More specific selectors override less specific ones
+- `tr.selectable` targets `<tr>` with class `selectable`
+- `.selectable tr` targets `<tr>` inside `.selectable` parent
+- Use specific selectors instead of `!important` when possible
