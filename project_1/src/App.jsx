@@ -14,6 +14,9 @@ import About from "./components/About.jsx"
 import Navbar from "./components/Navbar.jsx"
 import PageNotFound from "./components/PageNotFound.jsx"
 import Parameters from "./components/Parameters.jsx"
+import EmployeeDetails from "./components/EmployeeDetails.jsx"
+import EmployeeList from "./components/EmployeeList.jsx"
+import DepartmentList from "./components/DepartmentList.jsx"
 
 function App() {
   let data = [
@@ -62,6 +65,9 @@ function App() {
             <Route path="/api" element={<EmployeeAPI />} />
             <Route path="/parent" element={<Parent />} />
             <Route path="/parameters/:param_1/:param_2" element={<Parameters />} />
+            <Route path="/department_list" element={<DepartmentList />} />
+            <Route path="/employee_list/:deptid" element={<EmployeeList />} />
+            <Route path="/employee_details/:empid" element={<EmployeeDetails taxFunction={taxRate} />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </main>

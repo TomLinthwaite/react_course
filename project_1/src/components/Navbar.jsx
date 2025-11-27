@@ -14,6 +14,9 @@ function Navbar() {
 		<NavLink to="/api">Employee API</NavLink>
 		<NavLink to="/parent">Parent/Child</NavLink>
 		<NavLink to="/parameters/5/10">Parameters</NavLink>
+		<NavLink to="/department_list">Department List</NavLink>
+		<NavLink to="/employee_list/-1">Employee List</NavLink>
+		{/* <NavLink to="/employee_task/">Employee Details</NavLink> */}
 		</nav>
 	)
 }

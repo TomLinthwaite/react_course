@@ -123,6 +123,20 @@ li {
   min-width: 600px;
 }
 
+ul.link-item {
+  list-style-type: none;
+  padding: 0;
+}
+
+ul.link-item > li {
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+ul.link-item > li:hover {
+  background-color: hsl(0, 0%, 96%);
+}
+
 li > div {
   display: flex;
   justify-content: space-between;
