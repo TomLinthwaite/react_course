@@ -16,6 +16,7 @@ function Navbar() {
 		<NavLink to="/parameters/5/10">Parameters</NavLink>
 		<NavLink to="/department_list">Department List</NavLink>
 		<NavLink to="/employee_list/-1">Employee List</NavLink>
+		<NavLink to="/context_example">Context Example</NavLink>
 		{/* <NavLink to="/employee_task/">Employee Details</NavLink> */}
 		</nav>
 	)

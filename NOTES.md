@@ -140,3 +140,176 @@ function Child({ onSendMessage }) {
 - `tr.selectable` targets `<tr>` with class `selectable`
 - `.selectable tr` targets `<tr>` inside `.selectable` parent
 - Use specific selectors instead of `!important` when possible
+
+---
+
+#### Day 3 - React Router & Navigation
+
+**React Router Setup:**
+```bash
+npm install react-router-dom
+```
+
+**Basic Routing Structure:**
+```javascript
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
+function App() {
+  return (
+    <BrowserRouter>
+      <Navbar />  {/* Visible on all pages */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="*" element={<PageNotFound />} />  {/* 404 fallback */}
+      </Routes>
+    </BrowserRouter>
+  )
+}
+```
+
+**Key Routing Concepts:**
+- **BrowserRouter**: Wraps entire app to enable routing
+- **Routes**: Container for all route definitions
+- **Route**: Maps URL path to component
+- **Single Page Application**: URL changes but page never reloads - React swaps components
+
+**Navigation with Links:**
+```javascript
+import { Link, NavLink } from "react-router-dom"
+
+// Basic link
+<Link to="/about">About</Link>
+
+// NavLink automatically adds "active" class to current page
+<NavLink to="/home">Home</NavLink>
+```
+
+**URL Parameters (useParams):**
+```javascript
+import { useParams } from "react-router-dom"
+
+function EmployeeDetails() {
+  let { empid } = useParams()  // Extract parameter from URL
+  
+  useEffect(() => {
+    fetchEmployee(empid)
+  }, [empid])  // Re-fetch when parameter changes
+  
+  return <div>Employee ID: {empid}</div>
+}
+
+// Route definition
+<Route path="/employee/:empid" element={<EmployeeDetails />} />
+
+// Link to parameterized route
+<Link to={`/employee/${employee.id}`}>View Details</Link>
+```
+
+**Multiple Parameters:**
+```javascript
+function Parameters() {
+  let { param_1, param_2 } = useParams()
+  return <p>Sum: {parseInt(param_1) + parseInt(param_2)}</p>
+}
+
+// Route: /parameters/:param_1/:param_2
+<Link to="/parameters/5/10">Calculate</Link>
+```
+
+**Programmatic Navigation:**
+```javascript
+import { useNavigate } from "react-router-dom"
+
+function Component() {
+  let navigate = useNavigate()
+  
+  const handleClick = () => {
+    navigate('/employee/123')  // Navigate programmatically
+  }
+  
+  return <button onClick={handleClick}>Go to Employee</button>
+}
+```
+
+**Master-Detail Pattern:**
+```javascript
+// Master List - displays all items with links
+function DepartmentList() {
+  let [departments, setDepartments] = useState([])
+  
+  return (
+    <ul>
+      {departments.map(dept => (
+        <li key={dept.id}>
+          <Link to={`/employee_list/${dept.id}`}>
+            {dept.deptname}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
+// Detail View - shows items filtered by parameter
+function EmployeeList() {
+  let { deptid } = useParams()
+  let [employees, setEmployees] = useState([])
+  
+  useEffect(() => {
+    fetch('/api/employees')
+      .then(res => res.json())
+      .then(data => {
+        let filtered = data.filter(emp => emp.deptid == deptid)
+        setEmployees(filtered)
+      })
+  }, [deptid])  // Re-filter when department changes
+  
+  return (
+    <ul>
+      {employees.map(emp => (
+        <li key={emp.id}>
+          <Link to={`/employee_details/${emp.id}`}>
+            {emp.name}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
+```
+
+**Common Routing Patterns:**
+1. **Static routes**: `/about`, `/home`
+2. **Parameterized routes**: `/employee/:id`, `/product/:category/:id`
+3. **Optional parameters**: Pass `-1` or empty value for "show all"
+4. **Nested navigation**: Department → Employees → Employee Details
+5. **404 fallback**: `<Route path="*" element={<PageNotFound />} />`
+
+**Important useEffect Patterns with Routing:**
+```javascript
+// ❌ WRONG - infinite loop, no dependency array
+useEffect(() => {
+  fetchData()
+})
+
+// ✅ CORRECT - runs once on mount
+useEffect(() => {
+  fetchData()
+}, [])
+
+// ✅ CORRECT - runs when URL parameter changes
+useEffect(() => {
+  fetchData(paramId)
+}, [paramId])
+```
+
+**Routing Best Practices:**
+- Place `BrowserRouter` at root level in `App.jsx`
+- Keep `Navbar` outside `Routes` to show on all pages
+- Use `NavLink` for navigation menus (shows active state)
+- Use `Link` for general navigation
+- Always add dependency arrays to `useEffect` with parameters
+- Use `key` prop on list items (place on `<li>`, not `<Link>`)
+- Handle loading states while fetching data
+- Provide fallback UI when data is not found

@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom"
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom"
 import "./App.css"
 import { taxRate } from "./library/financial.jsx"
 import EmployeeTable from "./components/EmployeeTable.jsx"
@@ -17,6 +17,27 @@ import Parameters from "./components/Parameters.jsx"
 import EmployeeDetails from "./components/EmployeeDetails.jsx"
 import EmployeeList from "./components/EmployeeList.jsx"
 import DepartmentList from "./components/DepartmentList.jsx"
+import AppContext from "./components/Context.jsx"
+import ContextExample from "./components/ContextExample.jsx"
+
+let context_data = {
+  app_name: "React QA Course",
+  message: "Welcome to the React QA Course Application! This message is provided via Context."
+}
+
+function Layout() {
+  return (
+    <AppContext.Provider value={context_data}>
+      <div className="app-container">
+        <h1>{context_data["app_name"]}</h1>
+        <Navbar />
+        <main className="main-content">
+          <Outlet />
+        </main>
+      </div>
+    </AppContext.Provider>
+  )
+}
 
 function App() {
   let data = [
@@ -47,33 +68,80 @@ function App() {
     }
   ]
 
-  return (
-    <BrowserRouter>
-      <div className="app-container">
-        <h1>React QA Course</h1>
-        <Navbar />
-        <main className="main-content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/employees" element={<EmployeeTable employees={data} taxFunction={taxRate} />} />
-            <Route path="/counter" element={<EventCounter />} />
-            <Route path="/array" element={<EventArray />} />
-            <Route path="/input" element={<EventInput />} />
-            <Route path="/todo" element={<TodoList />} />
-            <Route path="/promise" element={<Promise />} />
-            <Route path="/api" element={<EmployeeAPI />} />
-            <Route path="/parent" element={<Parent />} />
-            <Route path="/parameters/:param_1/:param_2" element={<Parameters />} />
-            <Route path="/department_list" element={<DepartmentList />} />
-            <Route path="/employee_list/:deptid" element={<EmployeeList />} />
-            <Route path="/employee_details/:empid" element={<EmployeeDetails taxFunction={taxRate} />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-        </main>
-      </div>
-    </BrowserRouter>
-  )
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <Layout />,
+      children: [
+        {
+          index: true,
+          element: <Home />
+        },
+        {
+          path: "about",
+          element: <About />
+        },
+        {
+          path: "employees",
+          element: <EmployeeTable employees={data} taxFunction={taxRate} />
+        },
+        {
+          path: "counter",
+          element: <EventCounter />
+        },
+        {
+          path: "array",
+          element: <EventArray />
+        },
+        {
+          path: "input",
+          element: <EventInput />
+        },
+        {
+          path: "todo",
+          element: <TodoList />
+        },
+        {
+          path: "promise",
+          element: <Promise />
+        },
+        {
+          path: "api",
+          element: <EmployeeAPI />
+        },
+        {
+          path: "parent",
+          element: <Parent />
+        },
+        {
+          path: "parameters/:param_1/:param_2",
+          element: <Parameters />
+        },
+        {
+          path: "department_list",
+          element: <DepartmentList />
+        },
+        {
+          path: "employee_list/:deptid",
+          element: <EmployeeList />
+        },
+        {
+          path: "employee_details/:empid",
+          element: <EmployeeDetails taxFunction={taxRate} />
+        },
+        {
+          path: "context_example",
+          element: <ContextExample />
+        },
+        {
+          path: "*",
+          element: <PageNotFound />
+        }
+      ]
+    }
+  ])
+
+  return <RouterProvider router={router} />
 }
 
 export default App
